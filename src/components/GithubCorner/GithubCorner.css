@@ -1,6 +1,5 @@
-.github-corner {
-    border: 5px solid red;
-    display: block;
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
 }
 
 @keyframes octocat-wave {
@@ -13,10 +12,6 @@
     40%, 80% {
         transform: rotate(10deg)
     }
-}
-
-.github-corner:hover .octo-arm {
-    animation: octocat-wave 560ms ease-in-out
 }
 
 @media (max-width: 500px) {

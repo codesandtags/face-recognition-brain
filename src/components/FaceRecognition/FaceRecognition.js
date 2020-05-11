@@ -4,7 +4,7 @@ import './FaceRecognition.css';
 const FaceRecognition = ({ imageUrl, boundingBox }) => {
     const hasImage = imageUrl && imageUrl.length > 0;
     const image = !hasImage
-        ? <p> There is not image yet!</p>
+        ? <p className="f3"><span role="img">🙈</span> There is not image yet!</p>
         : <img
             className="face-recognition__image"
             width="80%"

@@ -4,7 +4,7 @@ import './GithubCorner.css';
 
 const GithubCorner = ({url}) => {
     return (
-        <div className="absolute top-0 right-0">
+        <div className="absolute top-0 left-0">
             <a href={url}
                target="_blank"
                className="github-corner"
@@ -18,7 +18,8 @@ const GithubCorner = ({url}) => {
                          position: 'absolute',
                          top: 0,
                          border: 0,
-                         right: 0,
+                         left: 0,
+                         transform: 'scale(-1, 1)'
                      }}
                      aria-hidden="true">
                     <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>

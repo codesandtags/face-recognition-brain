@@ -1,41 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Particles from 'react-particles-js';
 import particlesConfig from './particlesConfig';
 
 import './App.css';
 import Navigation from '../../components/Navigation';
-import Logo from '../../components/Logo';
+import GithubCorner from '../../components/GithubCorner';
+import SignIn from '../../components/SignIn';
 import ImageLinkForm from '../../components/ImageLinkForm';
 import FaceRecognition from '../../components/FaceRecognition';
-import GithubCorner from '../../components/GithubCorner';
+import Logo from '../../components/Logo';
 // Clarifai
 import Clarifai, { FACE_DETECT_MODEL } from 'clarifai';
-import { responseSuccess } from './clarifaiMock';
 
 const app = new Clarifai.App({
     apiKey: 'bcd464420d0943eeafb026655ee507c3'
 });
 
 function App() {
+    // States
     const [inputValue, setInputValue] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [boundingBox, setBoundingBox] = useState({});
+    const [route, setRoute] = useState('sign-in');
+
+    // Handle Events
     const onInputChange = (event) => {
         console.log('Input', event.target.value);
         setInputValue(event.target.value);
     };
     const performFaceRecognition = () => {
-        app.models.predict(FACE_DETECT_MODEL, inputValue)
-            .then((response) => {
-                // do something with response
-                // calculateFaceLocation(response);
-                displayFaceBox(calculateFaceLocation(response));
-            })
-            .catch((error) => {
-                debugger;
-                // there was an error
-            });
+        if (imageUrl) {
+            app.models.predict(FACE_DETECT_MODEL, imageUrl)
+                .then((response) => {
+                    // do something with response
+                    // calculateFaceLocation(response);
+                    displayFaceBox(calculateFaceLocation(response));
+                })
+                .catch((error) => {
+                    debugger;
+                    // there was an error
+                });
+        }
     };
+
+    useEffect(() => {
+        performFaceRecognition();
+    }, [imageUrl])
+
     const calculateFaceLocation = (data) => {
         if (!data.outputs || data.outputs.length === 0) return {};
 
@@ -54,12 +65,23 @@ function App() {
     const displayFaceBox = (box) => {
         setBoundingBox(box);
     }
-
     const onButtonSubmit = () => {
         setImageUrl(inputValue);
         console.log('Click button to send the image : ', inputValue);
-        setTimeout(performFaceRecognition, 100);
     }
+
+    const onRoutChange = (route) => {
+        setRoute(route);
+    };
+
+    const signInPage = <SignIn onRoutChange={onRoutChange}/>;
+    const homePage = (<main>
+            <Navigation onRoutChange={onRoutChange}/>
+            <Logo/>
+            <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
+            <FaceRecognition boundingBox={boundingBox} imageUrl={imageUrl}/>
+        </main>
+    );
 
     return (
         <div className="App flex flex-column w-90 center">
@@ -67,10 +89,8 @@ function App() {
                 style={{ position: 'fixed', top: 0, left: 0, zIndex: -1 }}
                 params={particlesConfig}/>
             <GithubCorner/>
-            <Navigation/>
-            <Logo/>
-            <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
-            <FaceRecognition boundingBox={boundingBox} imageUrl={imageUrl}/>
+
+            {route === 'sign-in' ? signInPage : homePage}
         </div>
     );
 }
