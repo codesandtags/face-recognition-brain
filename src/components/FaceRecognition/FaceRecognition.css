@@ -1,0 +1,22 @@
+.face-recognition {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.face-recognition__image {
+    width: 100%;
+}
+
+.bounding-box-set {
+    position: relative;
+}
+
+.bounding-box {
+    position: absolute;
+    box-shadow: 0 0 0 3px #149df2 inset;
+}
