@@ -1,17 +1,18 @@
 # Face Recognition Brain
 
-This project is being inspired by the Face Recognition App, which was created by [Andrei Neagoie](https://github.com/aneagoie/robofriends/) 
+This project is being inspired by the Face Recognition App, which was created by [Andrei Neagoie](https://github.com/aneagoie/face-recognition-brain) 
 in the [Complete Web Developer 2020 course](https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/learn/).
 
 This project contains the fundamental concepts used in every real web project like: 
  * Responsive layout for (mobile, tablet, desktop).
- * **React** (Or any framework / library) to render changes efficient way.
+ * **React** (Or any framework / library) to render changes 
+ efficient way.
  * **Redux** to manage the application state.
    * redux-thunk middleware
    * redux-devtools-extension middleware
    * redux-logger
- * API consumption to get data from any external resource.
-   * https://jsonplaceholder.typicode.com/users
+ * API consumption to get the face recognition.
+   * https://www.clarifai.com/models
 
 ## Dependencies
 
@@ -20,6 +21,8 @@ This project contains the fundamental concepts used in every real web project li
 | [Create React App](https://github.com/facebook/create-react-app)  |  Set up a modern web app by running one command. |
 | [Tachyons](https://tachyons.io/)  |  Functional css for humans  |
 | [Redux](https://es.redux.js.org/) | A Predictable State Container for JS Apps |
+| [React Tilt](https://www.npmjs.com/package/react-tilt)| A tiny requestAnimationFrame powered 60+fps lightweight parallax tilt effect. |
+| [React Particles](https://www.npmjs.com/package/react-particles-js)| Awesome library to generate dynamic backgrounds using particles. |
 
 ## License
 

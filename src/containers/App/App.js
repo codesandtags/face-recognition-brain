@@ -88,7 +88,7 @@ function App() {
             <Particles
                 style={{ position: 'fixed', top: 0, left: 0, zIndex: -1 }}
                 params={particlesConfig}/>
-            <GithubCorner/>
+            <GithubCorner url="https://github.com/codesandtags/face-recognition-brain"/>
 
             {route === 'sign-in' ? signInPage : homePage}
         </div>
