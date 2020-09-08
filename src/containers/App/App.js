@@ -45,7 +45,8 @@ function App() {
 
     useEffect(() => {
         performFaceRecognition();
-    }, [imageUrl])
+    }, [imageUrl]);
+
 
     const calculateFaceLocation = (data) => {
         if (!data.outputs || data.outputs.length === 0) return {};
